@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='FHIR-parser',
-    version='0.1.1',
+    name='FHIR Parser',
+    version='0.1.2',
     author='Greenfrogs',
     author_email='5961364+greenfrogs@users.noreply.github.com',
     description='An elegant and simple FHIR library for Python, built for human beings',
