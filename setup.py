@@ -20,5 +20,5 @@ setuptools.setup(
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.7',
 )
