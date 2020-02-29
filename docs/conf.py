@@ -21,7 +21,7 @@ copyright = '2020, Greenfrogs'
 author = 'Greenfrogs'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.2'
+release = '0.1.0'
 
 
 # -- General configuration ---------------------------------------------------
