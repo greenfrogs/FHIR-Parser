@@ -1,5 +1,6 @@
 import datetime
 from typing import List
+import os
 
 import pytest
 
@@ -10,7 +11,7 @@ from fhir_parser.patient import Patient, Extension, Identifier
 
 @pytest.fixture(scope='module')
 def patient():
-    with open('test_patient.json', 'r') as patient_file:
+    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'test_patient.json'), 'r') as patient_file:
         patient_data = patient_file.read().replace('\n', '')
     assert patient_data is not None
     patient: Patient = str_to_patient(patient_data)
@@ -20,7 +21,7 @@ def patient():
 
 @pytest.fixture(scope='module')
 def patients():
-    with open('test_patients.json', 'r') as patients_file:
+    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'test_patients.json'), 'r') as patients_file:
         patients_data = patients_file.read().replace('\n', '')
     assert patients_data is not None
     patients: List[Patient] = str_to_patients(patients_data)
@@ -30,7 +31,7 @@ def patients():
 
 @pytest.fixture(scope='module')
 def observation():
-    with open('test_observation.json', 'r') as observation_file:
+    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'test_observation.json'), 'r') as observation_file:
         observation_data = observation_file.read().replace('\n', '')
     assert observation_data is not None
     observation: Observation = str_to_observation(observation_data)
@@ -39,7 +40,7 @@ def observation():
 
 @pytest.fixture(scope='module')
 def observations():
-    with open('test_observations.json', 'r') as observations_file:
+    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'test_observations.json'), 'r') as observations_file:
         observations_data = observations_file.read().replace('\n', '')
     assert observations_data is not None
     observations: List[Observation] = str_to_observations(observations_data)
@@ -48,7 +49,7 @@ def observations():
 
 @pytest.fixture(scope='module')
 def error():
-    with open('test_error.json', 'r') as error_file:
+    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'test_error.json'), 'r') as error_file:
         error_data = error_file.read().replace('\n', '')
     assert error_data is not None
     error: str = str_to_error(error_data)

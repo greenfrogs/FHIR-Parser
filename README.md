@@ -1,7 +1,8 @@
 FHIR Parser
 =======================================
 **FHIR Parser** is an elegant and simple FHIR library for Python, built for human beings.
-
+[![CircleCI](https://circleci.com/gh/greenfrogs/FHIR-Parser.svg?style=svg&circle-token=a3f7a6daaa0540154190ba8de23f91950ff4d4c2)](https://circleci.com/gh/greenfrogs/FHIR-Parser)
+[![Documentation Status](https://readthedocs.org/projects/fhir-parser/badge/?version=latest)](https://fhir-parser.readthedocs.io/en/latest/?badge=latest)
 -------------------
 
 **The power of the FHIR Parser**::
