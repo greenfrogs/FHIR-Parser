@@ -1,0 +1,11 @@
+{
+  "resourceType": "OperationOutcome",
+  "id": "a289ab98c0533a429267fc02c95efb0d",
+  "issue": [
+    {
+      "severity": "error",
+      "code": "not-found",
+      "diagnostics": "Resource type 'Patient' with id '8f789d0b-3145-4cf2-8504-13159edaa757' couldn't be found."
+    }
+  ]
+}
