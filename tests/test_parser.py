@@ -119,8 +119,8 @@ def test_observation_parser(observation):
     assert observation.status == 'final'
     assert observation.patient_uuid == '8f789d0b-3145-4cf2-8504-13159edaa747'
     assert observation.encounter_uuid == '04090f8c-076e-4af1-9582-98d8cae66764'
-    assert observation.effective_datatime == datetime.datetime(year=2011, month=9, day=20, hour=21, minute=27, second=12, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600)))
-    assert observation.issued_datatime == datetime.datetime(year=2011, month=9, day=20, hour=21, minute=27, second=12, microsecond=215000, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600)))
+    assert observation.effective_datetime == datetime.datetime(year=2011, month=9, day=20, hour=21, minute=27, second=12, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600)))
+    assert observation.issued_datetime == datetime.datetime(year=2011, month=9, day=20, hour=21, minute=27, second=12, microsecond=215000, tzinfo=datetime.timezone(datetime.timedelta(seconds=3600)))
 
     assert len(observation.components) == 3
     assert ObservationComponent('http://loinc.org', '85354-9', 'Blood Pressure', None, None)
