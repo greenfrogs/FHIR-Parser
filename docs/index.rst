@@ -24,17 +24,27 @@ FHIR Parser
     '76.0 mm[Hg]'
 
 
-Getting started
+Getting Started
 ---------------
 
 Many core ideas & API calls are explained in the tutorial/getting-started
 document:
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 3
 
     getting-started
 
+
+Examples
+--------
+
+A collection of examples using the FHIR API:
+
+.. toctree::
+    :maxdepth: 2
+
+    examples
 
 API
 ---

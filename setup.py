@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='FHIR Parser',
-    version='0.1.3',
+    version='0.1.4',
     author='Greenfrogs',
     author_email='5961364+greenfrogs@users.noreply.github.com',
     description='An elegant and simple FHIR library for Python, built for human beings',
@@ -13,7 +13,7 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     url='https://github.com/greenfrogs/FHIR-Parser',
     license='Apache License 2.0',
-    install_requires=['requests>=2.23.0'],
+    install_requires=['requests>=2.23.0', 'python-dateutil>=2.8.1'],
     packages=setuptools.find_packages(),
     classifiers=[
         'Programming Language :: Python :: 3',

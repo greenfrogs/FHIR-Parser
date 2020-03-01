@@ -216,6 +216,32 @@ class Patient:
         """
         return (datetime.date.today() - self.birth_date).days / 365.25
 
+    def get_extension(self, extension: str) -> Optional[Union[str, float]]:
+        """ Gets an extension value (either str or float) based on the extension url, returns None if not available.
+        Args:
+            extension: url of the extension
+
+        Returns: str or float of the extension or None if not found
+
+        """
+        for e in self.extensions:
+            if e.url == extension:
+                return e.value
+        return None
+
+    def get_identifier(self, identifier: str) -> Optional[Union[str, float]]:
+        """ Gets an identifier value (str) based on the identifier code, returns None if not available.
+        Args:
+            identifier: code of the identifier
+
+        Returns: str value of the or None if not found
+
+        """
+        for i in self.identifiers:
+            if i.code == identifier:
+                return i.value
+        return None
+
     def __str__(self) -> str:
         return ' | '.join(map(str,
                               [self.uuid, self.name, self.gender, self.birth_date,

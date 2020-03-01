@@ -36,18 +36,18 @@ class ObservationComponent:
 class Observation:
     """An observation object holding either one or more observation components"""
     def __init__(self, uuid: str, type: str, status: str, patient_uuid: str, encounter_uuid: str,
-                 effective_datetime: datetime.datetime, issued_datatime: datetime.datetime,
+                 effective_datetime: datetime.datetime, issued_datetime: datetime.datetime,
                  components: List[ObservationComponent]):
         self.uuid: str = uuid
         self.type: str = type
         self.status: str = status
         self.patient_uuid: str = patient_uuid
         self.encounter_uuid: str = encounter_uuid
-        self.effective_datatime: datetime.datetime = effective_datetime
-        self.issued_datatime: datetime.datetime = issued_datatime
+        self.effective_datetime: datetime.datetime = effective_datetime
+        self.issued_datetime: datetime.datetime = issued_datetime
         self.components: List[ObservationComponent] = components
 
     def __str__(self) -> str:
-        return ' | '.join(map(str, [self.uuid, self.type, self.status, self.effective_datatime, self.issued_datatime, '[' + ', '.join(map(str, self.components)) + ']']))
+        return ' | '.join(map(str, [self.uuid, self.type, self.status, self.effective_datetime, self.issued_datetime, '[' + ', '.join(map(str, self.components)) + ']']))
 
 

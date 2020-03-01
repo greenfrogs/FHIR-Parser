@@ -1,4 +1,5 @@
 import datetime
+import dateutil.parser
 import json
 from typing import List, Optional, Union
 
@@ -16,7 +17,7 @@ def str_to_patient(input: str) -> Patient:
     name: Name = Name(input['name'][0]['family'], input['name'][0]['given'], input['name'][0]['prefix'] if 'prefix' in input['name'][0] else '')
     telecoms: List[Telecom] = [Telecom(x['system'], x['value'], x['use']) for x in input['telecom']]
     gender: str = input['gender']
-    birth_date: datetime.date = datetime.date.fromisoformat(input['birthDate'])
+    birth_date: datetime.date = dateutil.parser.isoparse(input['birthDate']).date()
     addresses: List[Address] = [Address(x['line'], x['city'], x['state'], x['postalCode'] if 'postalCode' in x else '', x['country'],
                                         [Extension(y['url'], y['valueDecimal']) for y in
                                          x['extension'][0]['extension']])
@@ -97,8 +98,8 @@ def str_to_observation(input: str) -> Observation:
     type: str = input['category'][0]['coding'][0]['code']
     patient_uuid: str = input['subject']['reference'].split('/')[1]
     encounter_uuid: str = input['encounter']['reference'].split('/')[1]
-    effective_datetime: datetime.datetime = datetime.datetime.fromisoformat(input['effectiveDateTime'])
-    issued_datetime: datetime.datetime = datetime.datetime.fromisoformat(input['issued'])
+    effective_datetime: datetime.datetime = dateutil.parser.isoparse(input['effectiveDateTime'])
+    issued_datetime: datetime.datetime = dateutil.parser.isoparse(input['issued'])
 
     components: List[ObservationComponent] = []
     if 'code' in input:
@@ -116,6 +117,7 @@ def str_to_observations(input: str) -> List[Observation]:
 
     observations: List[Observation] = []
     for i in input:
-        for p in i['entry']:
-            observations.append(str_to_observation(json.dumps(p['resource'])))
+        if 'entry' in i:
+            for p in i['entry']:
+                observations.append(str_to_observation(json.dumps(p['resource'])))
     return observations

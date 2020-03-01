@@ -1,6 +1,6 @@
-===============
-``Observation``
-===============
+===========
+``Patient``
+===========
 
-.. automodule:: fhir_parser.observation
+.. automodule:: fhir_parser.patient
     :members:

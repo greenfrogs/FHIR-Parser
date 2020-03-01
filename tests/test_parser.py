@@ -4,9 +4,10 @@ import os
 
 import pytest
 
-from fhir_parser.observation import Observation, ObservationComponent
+from fhir_parser import Patient, Observation
+from fhir_parser.observation import ObservationComponent
 from fhir_parser.parser import str_to_patient, str_to_error, str_to_patients, str_to_observation, str_to_observations
-from fhir_parser.patient import Patient, Extension, Identifier
+from fhir_parser.patient import Extension, Identifier
 
 
 @pytest.fixture(scope='module')
@@ -87,6 +88,8 @@ def test_patient_parser(patient):
     assert Extension('disability-adjusted-life-years', 0.0082221553734000332) in patient.extensions
     assert Extension('quality-adjusted-life-years', 20.9917778446266) in patient.extensions
 
+    assert patient.get_extension('us-core-birthsex') == 'F'
+
     assert len(patient.identifiers) == 5
     assert Identifier('https://github.com/synthetichealth/synthea', '', '',
                       '8f789d0b-3145-4cf2-8504-13159edaa747') in patient.identifiers
@@ -97,6 +100,8 @@ def test_patient_parser(patient):
     assert Identifier('urn:oid:2.16.840.1.113883.4.3.25', 'DL', 'Driver\'s License', 'S99995899') in patient.identifiers
     assert Identifier('http://standardhealthrecord.org/fhir/StructureDefinition/passportNumber', 'PPN',
                       'Passport Number', 'X80142477X') in patient.identifiers
+
+    assert patient.get_identifier('MR') == '8f789d0b-3145-4cf2-8504-13159edaa747'
 
 
 def test_patients_parser(patients):
