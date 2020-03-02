@@ -10,9 +10,10 @@ FHIR Parser
 
 **The power of the FHIR Parser**::
 
-    >> fhir = FHIR('https://localhost:5001/api/', verify_ssl=false)
+    >> from fhir_parser import FHIR
+    >> fhir = FHIR()
     >> patient = fhir.get_patient('8f789d0b-3145-4cf2-8504-13159edaa747')
-    >> patient.full_name
+    >> patient.full_name()
     'Ms. Abby752 Beatty507'
     >> patient.marital_status
     'Never Married'
