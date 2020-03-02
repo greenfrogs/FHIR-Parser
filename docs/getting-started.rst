@@ -223,7 +223,7 @@ for a patient can also be retrieved one page at a time.
     specific_observation  = fhir.get_observation('4a064229-2a40-45f4-a259-f4eedcfd525a')
     first_page_observations = fhir.get_patient_observations_page('8f789d0b-3145-4cf2-8504-13159edaa747', 1)
 
-The patient object contains:
+The observation object contains:
 
 * :ref:`uuid<observation_uuid>` (str)
 * `type`_ (str)
