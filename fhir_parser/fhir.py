@@ -16,9 +16,12 @@ from fhir_parser.patient import Patient
 
 class FHIR:
     """Create the FHIR endpoint to retrieve patient and observation data"""
-    def __init__(self, endpoint: str = 'https://localhost:5001/api/', verify_ssl: bool = False):
+
+    def __init__(self, endpoint: str = 'https://localhost:5001/api/', verify_ssl: bool = False,
+                 ignore_errors: bool = True):
         self.endpoint = endpoint
         self.verify_ssl = verify_ssl
+        self.ignore_errors = ignore_errors
         if not self.verify_ssl:
             # noinspection PyUnresolvedReferences
             from requests.packages.urllib3.exceptions import InsecureRequestWarning
@@ -39,7 +42,7 @@ class FHIR:
         response = requests.get(urllib.parse.urljoin(self.endpoint, 'Patient/'), verify=self.verify_ssl)
         self._error_response(response)
         try:
-            return str_to_patients(response.text)
+            return str_to_patients(response.text, ignore_errors=self.ignore_errors)
         except KeyError:
             raise AttributeError('Patient data is corrupt')
 
@@ -55,7 +58,7 @@ class FHIR:
                                 verify=self.verify_ssl)
         self._error_response(response)
         try:
-            return str_to_patients(response.text)
+            return str_to_patients(response.text, ignore_errors=self.ignore_errors)
         except KeyError:
             raise AttributeError('Patient data is corrupt')
 
@@ -82,7 +85,8 @@ class FHIR:
         Returns: A single observation
 
         """
-        response = requests.get(urllib.parse.urljoin(self.endpoint, 'Observation/single/' + str(id)), verify=self.verify_ssl)
+        response = requests.get(urllib.parse.urljoin(self.endpoint, 'Observation/single/' + str(id)),
+                                verify=self.verify_ssl)
         self._error_response(response)
         try:
             return str_to_observation(response.text)
@@ -101,7 +105,7 @@ class FHIR:
                                 verify=self.verify_ssl)
         self._error_response(response)
         try:
-            return str_to_observations(response.text)
+            return str_to_observations(response.text, ignore_errors=self.ignore_errors)
         except KeyError:
             raise AttributeError('Observation data from patient is corrupt')
 
@@ -118,6 +122,6 @@ class FHIR:
                                 verify=self.verify_ssl)
         self._error_response(response)
         try:
-            return str_to_observations(response.text)
+            return str_to_observations(response.text, ignore_errors=self.ignore_errors)
         except KeyError:
             raise AttributeError('Observation data from patient is corrupt')

@@ -57,13 +57,19 @@ def str_to_patient(input: str) -> Patient:
                    extensions, identifiers)
 
 
-def str_to_patients(input: str) -> List[Patient]:
+def str_to_patients(input: str, ignore_errors: bool = False) -> List[Patient]:
     input = json.loads(input)
 
     patients: List[Patient] = []
     for i in input:
         for p in i['entry']:
-            patients.append(str_to_patient(json.dumps(p['resource'])))
+            try:
+                patients.append(str_to_patient(json.dumps(p['resource'])))
+            except Exception as e:
+                if ignore_errors:
+                    pass
+                else:
+                    raise e
     return patients
 
 def str_to_error(input: str) -> Optional[str]:
@@ -112,12 +118,18 @@ def str_to_observation(input: str) -> Observation:
     return Observation(uuid, type, status, patient_uuid, encounter_uuid, effective_datetime, issued_datetime, components)
 
 
-def str_to_observations(input: str) -> List[Observation]:
+def str_to_observations(input: str, ignore_errors: bool = False) -> List[Observation]:
     input = json.loads(input)
 
     observations: List[Observation] = []
     for i in input:
         if 'entry' in i:
             for p in i['entry']:
-                observations.append(str_to_observation(json.dumps(p['resource'])))
+                try:
+                    observations.append(str_to_observation(json.dumps(p['resource'])))
+                except Exception as e:
+                    if ignore_errors:
+                        pass
+                    else:
+                        raise e
     return observations
