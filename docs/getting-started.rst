@@ -305,7 +305,7 @@ The issued datetime of the observation returned as a datetime.datetime object.
 
 .. code-block:: python
 
-    > observation.effective_datatime
+    > observation.issued_datetime
     datetime.datetime(2011, 9, 20, 21, 27, 12, 215000, tzinfo=tzoffset(None, 3600))
 
 
